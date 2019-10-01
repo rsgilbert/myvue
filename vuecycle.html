@@ -1,0 +1,35 @@
+<html>
+<head>
+  <meta charset="utf-8">
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+
+<style>
+  #link-id {
+    color: green;
+  }
+  </style>
+  <div id="myvue">
+        <form @submit.prevent="ONsubmit">
+        <button type='submit' >clickme</button>
+      </form>
+      <a @click="log">log me</a>
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: '#myvue',
+      data: {
+        link: "link-id",
+        href: "www.google.com",
+        url: 'https://g.com',
+        ONsubmit: function() {console.log("You submitted me")},
+        log: function() {console.log("You clicked me")},
+      }
+    })
+    vm.show = false
+  </script>
+
+
+
+</html>

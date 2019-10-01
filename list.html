@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="node_modules/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <ul id="ex">
+            <li v-for="item of filta(items)" :key="item.id">
+                {{ item }}
+            </li>
+            <input v-model="query">
+            <div v-for="i in items">
+                <li>{{ i }}</li>
+            </div>
+        </ul>
+        <script>
+        var e = new Vue({
+            el: '#ex',
+            data: {
+                na: 'black gold',
+                query: '',
+                items: [
+                    'pigs', 'chicken', 'cows', 'goats'
+                ]
+            },
+            methods: {
+                filta: function(items) {
+                    q = this.query
+                    return items.filter(function(i) {
+                        return i.includes(q)
+                    })
+                }
+            },
+
+            computed: {
+                fitems: function() {
+                    var query = this.query
+                    return this.items.filter(function(i) {
+                        return i.includes(query)
+                    })
+                }
+            }
+        })
+        </script>
+    </body>
+    </html>

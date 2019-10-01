@@ -1,0 +1,94 @@
+<html>
+    <head>
+
+    </head>
+
+    <body>
+        <script src="node_modules/vue/dist/vue.js"></script>
+
+        <div id="app">
+            {{ message }}
+        </div>
+
+        <div id="app-2">
+            <span v-bind:title="message2">
+                Hover your mouse over me to see my title
+            </span>
+        </div>
+
+        <div id="app-3">
+            <transition name="fade">
+                <span v-if="seen">Now you see me</span>
+            </transition>
+        </div>
+
+        <div class="app-4">
+            <ol>
+                <li v-for="todo in todos">
+                    {{ todo.text }}
+                </li>
+            </ol>
+        </div>
+
+        <div id="app-5">
+            <p>{{ message }}</p>
+            <button v-on:click="reverseMessage">Reverse Message</button>
+        </div>
+
+        <script>
+                var app = new Vue({
+                    el: '#app',
+                    data: {
+                        message: "Hello Vue"
+                    }
+                })
+                var app2 = new Vue({
+                    el: '#app-2',
+                    data: {
+                        message2: "you loaded this page on " + new Date().toLocaleString()
+                    }
+                })
+
+                var app3 = new Vue({
+                    el: '#app-3',
+                    data: {
+                        seen: true
+                    }
+                })
+
+                var app4 = new Vue ({
+                    el: ".app-4",
+                    data: {
+                        todos: [
+                            {text: "Learn django"},
+                            {text: "Learn Vue"},
+                            {text: "Get rich"}
+                        ]
+                    }
+                })
+
+                var app5 = new Vue({
+                    el: '#app-5',
+                    data: {
+                        message: "Welcome to Vue.js"
+                    },
+                    methods: {
+                        reverseMessage: function() {
+                            this.message = this.message.split('').reverse().join('')
+                        }
+                    }
+                })
+                
+        </script>
+
+        <style>
+            .fade-enter-active, .fade-leave-active {
+                transition: opacity .5s;
+            }
+            .fade-enter, .fade-leave-to {
+                opacity: 0;
+            }
+        </style>
+
+    </body>
+</html>

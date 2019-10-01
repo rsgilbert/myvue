@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="node_modules/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <div :style="{fontSize: postFontSize + 'em'}">
+                <post :heading="heading" 
+                    :content="myContent()"
+                    @enlarge="increaseFont"></post>  
+                <in v-model="searchText"/>
+            </div>
+            <alert-box>things are bad my friend</alert-box>
+            <component :is="currentComponent"></component>
+
+            <table>
+                <tr>black</tr>
+                <tr is="alert-box"></tr>
+            </table>
+        </div>
+
+
+        <script>
+            var AlertBox = {
+                template: `
+                    <div class="demo-alert-box">
+                        <strong><i>Error!</i></strong>
+                        <slot></slot>
+                    </div>
+                `
+            }
+            Vue.component('in', {
+                props: ['value'],
+                template: `
+                    <input
+                        :value="value"
+                        @input="$emit('input', $event.target.value)">  `
+            })
+            Vue.component('post', {
+                props: ['heading', 'content'],
+                components: {
+                    AlertBox
+                },
+                template: `
+                    <div>
+                        <h3>{{ heading }}</h3>
+                        <p>{{ content }} </p>
+                        <alert-box></alert-box>
+                        <button
+                            @click="$emit('enlarge', 0.3)">
+                            Enlarge
+                        </button>
+                    </div>
+                `
+            })
+            var vm = new Vue({
+                el: '#app',
+                components: {'alert-box': AlertBox},
+                data: {
+                    heading: 'Welcome here',
+                    content: 'I welcome you to components',
+                    postFontSize: 1,
+                    searchText: '',
+                    currentComponent: 'alert-box',
+                },
+                methods: {
+                    increaseFont: function(inc) {
+                        this.postFontSize += inc
+                    },
+                    myContent: function() {
+                        return this.content
+                    }
+                },
+                watch: {
+                    searchText: function() {
+                        console.log(this.searchText)
+                    }
+                }
+            })
+
+            
+        </script>
+    </body>
+</html>

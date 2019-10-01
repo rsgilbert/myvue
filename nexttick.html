@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="node_modules/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="app">{{ message }}</div>
+        <script>
+            var vm = new Vue({
+                el: "#app",
+                data: {
+                    message: '1008'
+                }
+            })
+            vm.message = 'new print'
+            console.log(vm.$el.textContent, 'new print')
+            Vue.nextTick(function() {
+                console.log(vm.$el.textContent)
+            })
+        </script>
+    </body>
+</html>
+        

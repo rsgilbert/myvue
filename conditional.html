@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <script src="node_modules/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+                <h1 v-if="awesome">Vue is awesome</h1>
+                <h1 v-else>Too bad</h1>
+
+                <template v-if="shouldShow">
+                    <h1>navbar menu</h1>
+                    <p>Items</p>
+                </template>
+
+                <div v-if="Math.random() > 0.5">
+                    Now you know
+                </div>
+                <div v-else>
+                    Now you dont
+                </div>
+
+                <template v-if="authType === 'login'">
+                    <label v-show="showlabel">Username</label>
+                    <input placeholder="Enter your username" key="username">
+                </template>
+                <template v-else-if="authType === 'register'">
+                    <label>Email</label>
+                    <input placeholder="Enter your email" key="email">
+                </template>
+        </div>
+
+        
+
+        <script>
+            var v= new Vue({
+                el: '#app',
+                data: {
+                    awesome: true,
+                    shouldShow: true,
+                    authType: 'login',
+                    showlabel: true,
+                }
+            })
+        </script>
+    </body>
+</html>

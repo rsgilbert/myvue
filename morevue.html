@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <script src="node_modules/vue/dist/vue.js"></script>
+    </head>
+    <body>
+      <div id='app1'>
+          <app-nav></app-nav>
+          <item
+            v-for="item in mylist"
+            v-bind:todo="item"
+            v-bind:key="item.id">
+          </item>
+      </div>
+
+        <script>
+            Vue.component('item', {
+              props: ['todo'],
+              template: '<li>{{ todo.text }}</li>'
+            })
+
+            Vue.component('app-nav', {
+              template: '<h1>Welcome to my website</h1>'
+            })
+
+            var app1 = new Vue({
+              el: '#app1',
+              data:  {
+                mylist: [
+                  {id: 0, text: 'Pigs'},
+                  {id: 1, text: 'Goats'},
+                  {id: 2, text: 'Cows'}
+                ]
+              }
+            })
+            let data = {a: 1}
+            let vm = new Vue({
+              el: '#pi',
+              data: data,
+            })
+
+        </script>
+    </body>
+</html>

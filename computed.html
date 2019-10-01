@@ -1,0 +1,52 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+
+  <div class="computeMessage">
+    <p>Message: {{ message }} </p>
+    <p>Reversed: {{ reversedMessage }}: {{ now }}</p>
+  </div>
+
+  <div id="demo"> {{ fullname }}</div>
+
+  <script>
+    var vm = new Vue({
+      el: '.computeMessage',
+      data: {
+        message: 'Stanislav Chobanov',
+      },
+      computed: {
+        reversedMessage: function() {
+          return this.message.split('').reverse().join('')
+        }
+      },
+      methods: {
+        now: function() {
+          return Date.now()
+        },
+      },
+    })
+
+    var vm2 = new Vue({
+      el: '#demo',
+      data: {
+        first: 'Jack',
+        last: 'Muss'
+      },
+      computed: {
+        fullname: {
+          get: function() {
+            return this.first + " " + this.last
+          },
+          set: function(fullname) {
+            var names = fullname.split(' ')
+            this.first = names[0]
+            this.last = names[1]
+          }<a href="#"></a>
+        }
+      }
+    })
+  </script>
+</html>

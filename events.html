@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="node_modules/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="ex">
+            <input v-model="words" v-on:keydown.w="warn" v-on:keyup.enter="log">
+            <a v-on:click.once href="dlsk">Add 2</a>
+            <p @click.once="warn">Button clicked {{ counter }} times</p>
+        </div>
+
+        <script>
+            var e = new Vue({
+                el: '#ex',
+                data: {
+                    words: '',
+                    counter: 0
+                },
+                methods: {
+                    warn: function(msg, event) {
+                        console.log(this.words)
+                    },
+                    log: function() {console.log("keyup")}
+                },
+            })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,34 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+    <style media="screen">
+    .active {
+      color: green;
+    }
+    .error {
+      color: red;
+    }
+    .big {
+      background: purple;
+    }
+  </style>
+
+  <div id="app" :style="mystyle">potato</div>
+
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+          mystyle: {
+            color: 'pink',
+            fontSize: '28px',
+          },
+        },
+    })
+  </script>
+
+</body>
+</html>
